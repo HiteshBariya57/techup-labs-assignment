@@ -1,0 +1,52 @@
+    <div class="container p-0">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Create Customer</h4>
+                <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name*</label>
+                        <input formControlName="name" type="text" class="form-control" id="name" required>
+                        
+                        <div *ngIf="customerForm.get('name')?.invalid && (customerForm.get('name')?.touched || customerForm.get('name')?.dirty)" class="text-danger">
+                            Title is required.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email*</label>
+                        <input formControlName="email" type="email" class="form-control" id="email" required>
+                        <div *ngIf="customerForm.get('email')?.invalid && (customerForm.get('email')?.touched || customerForm.get('email')?.dirty)" class="text-danger">
+                            Valid email is required.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="region" class="form-label">Region*</label>
+                        <select formControlName="region" (change)="onRegionChange($event)" class="form-select" id="region" required>
+                            <option selected disabled value="">Choose...</option>
+                            
+                            <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+                        </select>
+                        
+                        <div *ngIf="customerForm.get('region')?.invalid && (customerForm.get('region')?.touched || customerForm.get('region')?.dirty)" class="text-danger">
+                            Region is required.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country*</label>
+                        <select formControlName="country" class="form-select" id="country" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option *ngFor="let country of filteredCountries" [value]="country">{{country}}</option>
+                        </select>
+                        
+                        <div *ngIf="customerForm.get('country')?.invalid && (customerForm.get('country')?.touched || customerForm.get('country')?.dirty)" class="text-danger">
+                            Country is required.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Customer</button>
+                    <button mat-button mat-dialog-close>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+

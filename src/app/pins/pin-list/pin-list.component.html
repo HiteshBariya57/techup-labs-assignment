@@ -1,0 +1,51 @@
+<nav class="navbar px-4 navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">TechUp Labs | Assignment | Hitesh Bariya</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<div class="container mt-4">
+  <div class="d-flex w-100 justify-content-end">
+    <button (click)="openCustomerFormDialog()" class="btn btn-secondary mb-2">+ Add Customer</button>
+  </div>
+  <div class="d-flex justify-content-between">
+    <h1 class="page-title">List of pins</h1>
+    <div>
+      <button class="btn btn-secondary" (click)="openPinFormDialog()">+ Add Pin</button>
+    </div>
+  </div>
+
+  <table class="table table-bordered mt-4">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Image</th>
+        <th scope="col">Collaboratory</th>
+        <th scope="col">Privacy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="pins.length === 0">
+        <td colspan="4" class="text-center">No pins added yet.</td>
+      </tr>
+      <tr *ngFor="let pin of pins">
+        <td>{{pin.title}}</td>
+        <td>
+          <div class="img-placeholder" *ngIf="pin.image">
+          <img class="customer-image" [attr.src]="pin.image" alt="Pin Image" />
+        </div>
+      </td>
+        <td>
+          <div *ngFor="let collaborator of pin.collaborator">{{collaborator}}</div>
+        </td>
+        <td>{{pin.privacy | titlecase}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-4 mb-4">
+  <button class="btn btn-danger" (click)="clearData()">Clear Data</button>
+</div>

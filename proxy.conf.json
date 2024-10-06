@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://api.first.org/data/v1",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

@@ -1,0 +1,58 @@
+<div class="container p-0 pin-form">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title mb-4">Create Pin</h4>
+      <form [formGroup]="pinForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="mb-3">
+    <label for="title" class="form-label">Title*:</label>
+    <input id="title" formControlName="title" type="text" class="form-control" required />
+    <div *ngIf="pinForm.get('title')?.invalid && pinForm.get('title')?.touched" class="invalid-feedback">
+      Title is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Select Image*:</label>
+    <input id="image" type="file" ng2FileSelect [uploader]="uploader" (onFileSelected)="onFileSelected($event)" class="form-control" required />
+    <div *ngIf="!uploader.getNotUploadedItems().length && imageTouched" class="invalid-feedback">
+      Image is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="collaborator" class="form-label">Select Collaborator*:</label>
+    <ng-select formControlName="collaborator" [items]="collaborators" 
+           bindLabel="name" 
+           bindValue="name" 
+           [multiple]="true">
+</ng-select>
+
+  <div *ngIf="pinForm.get('collaborator')?.invalid && pinForm.get('collaborator')?.touched" class="invalid-feedback">
+      Collaborator is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Privacy*:</label>
+    <div>
+      <div class="form-check form-check-inline">
+        <input type="radio" formControlName="privacy" value="private" class="form-check-input" id="privacyPrivate" />
+        <label class="form-check-label" for="privacyPrivate">Private</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" formControlName="privacy" value="public" class="form-check-input" id="privacyPublic" />
+        <label class="form-check-label" for="privacyPublic">Public</label>
+      </div>
+    </div>
+    <div *ngIf="pinForm.get('privacy')?.invalid && pinForm.get('privacy')?.touched" class="invalid-feedback">
+      Privacy selection is required.
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="pinForm.invalid">Create Pin</button>
+  <button mat-dialog-close class="btn btn-light">Close</button>
+
+</form>
+</div>
+</div>
+</div>

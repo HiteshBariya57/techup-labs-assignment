@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@ng-select/ng-select/themes/default.theme.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Global styles to remove grey background from Angular Material input fields */
+.mat-form-field .mat-input-element {
+    background-color: transparent !important; /* Removes grey background */
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: transparent !important; /* Removes grey background from outlined appearance */
+  }
+  
+  .customer-modal .mat-mdc-dialog-surface { 
+    border-radius: 10px !important;
+  }
+
+  .btn-light {
+    margin-left: 10px !important;
+  }
+
+h4 { font-size: 18px!important; font-weight: bold!important;}
+
+  .card {
+    border: none !important;
+    background-color: transparent !important;
+  }
